@@ -1,13 +1,16 @@
-print('Введите номер горизонтали первой фигуры: ')
-L = int(input())
-print('Введите номер вертикали первой фигуры: ')
-k = int(input())
+
+letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+print('Введите номер горизонтали первой фигуры (k): ')
+x1 = int(input())
+print('Введите букву вертикали первой фигуры (l): ')
+y1 = letters.index(input())
 print('Первая фигура это (ферзь, ладья, слон или конь): ')
 figure_1 = str(input())
-print('Введите номер горизонтали второй фигуры: ')
-n = int(input())
-print('Введите номер вертикали второй фигуры: ')
-m = int(input())
+print('Введите номер горизонтали второй фигуры (n): ')
+x2 = int(input())
+print('Введите букву вертикали второй фигуры (m): ')
+y2 = letters.index(input())
 
 
 def cell(horizontal, vertical):
@@ -19,8 +22,8 @@ def cell(horizontal, vertical):
 
 
 def color_comparison():
-    color_1 = cell(L, k)
-    color_2 = cell(n, m)
+    color_1 = cell(x1, y1)
+    color_2 = cell(x2, y2)
     if color_1 == color_2:
         print('Клетки одного цвета')
     else:
@@ -28,30 +31,30 @@ def color_comparison():
 
 
 def menace(name):
-    module_x = abs(k - m)
-    module_y = abs(L - n)
+    module_y = abs(y1 - y2)
+    module_x = abs(x1 - x2)
     if name == 'ферзь' or name == 'Ферзь':
-        if k == m or L == n or module_x == module_y:
+        if y1 == y2 or x1 == x2 or module_x == module_y:
             print('Ферзь представляет угрозу!')
             print('На позицию второй фигуры можно попасть за 1 ход')
         else:
             print('Ферзь не представляет угрозы ~')
-            new_l = n
+            new_x1 = x2
             print('На позицию второй фигуры можно попасть за 2 хода:\n',
-                  'Первый ход на:', new_l, k)
-            new_k = m
-            print(' Второй ход на:', new_l, new_k)
+                  'Первый ход на:', new_x1, y1)
+            new_y1 = y2
+            print(' Второй ход на:', new_x1, new_y1)
     elif name == 'ладья' or name == 'Ладья':
-        if k == m or L == n:
+        if y1 == y2 or x1 == x2:
             print('Ладья представляет угрозу!')
             print('На позицию второй фигуры можно попасть за 1 ход')
         else:
             print('Ладья не представляет угрозы ~')
-            new_l = n
+            new_x1 = x2
             print('На позицию второй фигуры можно попасть за 2 хода:\n',
-                  'Первый ход на:', new_l, k)
-            new_k = m
-            print(' Второй ход на:', new_l, new_k)
+                  'Первый ход на:', new_x1, y1)
+            new_y1 = y2
+            print(' Второй ход на:', new_x1, new_y1)
     elif name == 'слон' or name == 'Слон':
         if module_x == module_y:
             print('Слон представляет угрозу!')
